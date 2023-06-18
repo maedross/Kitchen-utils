@@ -13,18 +13,18 @@
 </template>
 
 <script lang="ts">
-import MealPlanScreen from './components/MealPlanScreen.vue';
-import RecipeControlScreen from './components/RecipeControlScreen.vue';
+import RecipeListTab from './RecipeListTab.vue';
+import RecipeTab from './RecipeTab.vue';
 
 export default {
   components: {
-    MealPlanScreen,
-    RecipeControlScreen
+    RecipeListTab,
+    RecipeTab
   },
   data() {
     return {
       currentTab: "MealPlanScreen",
-      tabs: ["MealPlanScreen", "RecipeControlScreen"]
+      tabs: ["RecipeListTab", "RecipeTab"]
     }
   }
 }

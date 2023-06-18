@@ -3,21 +3,21 @@
 <template>
     <h1>Recipes</h1>
     <section>
-        
+        <NewRecipeButton/>
+        <RecipeButton>Alfalfa</RecipeButton>
+        <RecipeButton>Rat Tail Quiche</RecipeButton>
     </section>
-    </template>
+</template>
     
     
     <script lang="ts">
     import NewRecipeButton from './NewRecipeButton.vue';
     import RecipeButton from './RecipeButton.vue';
-    import RecipeScreen from './RecipeScreen.vue';
 
     export default {
         components: {
             NewRecipeButton,
             RecipeButton,
-            RecipeScreen
         }
     }
     </script>

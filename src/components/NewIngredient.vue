@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="onSubmit">
         <div>
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required>
@@ -17,7 +17,12 @@
 
 <script lang="ts">
     export default {
-        
+        methods: {
+            onSubmit() {
+                // Will we emit an event, pass something to the backend, or both?
+                this.$emit("ingredient-added");
+            }
+        }
     };
 </script>
 
