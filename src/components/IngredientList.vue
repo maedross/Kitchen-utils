@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div v-else>
-                <NewIngredient @ingredient-added="createIngredient"/>
+                <NewIngredientForm @ingredient-added="createIngredient"/>
             </div>
         </ul>
     </div>
@@ -19,11 +19,11 @@
 
 
 <script lang="ts">
-    import NewIngredient from './NewIngredient.vue';
+    import NewIngredientForm from './NewIngredientForm.vue';
 
     export default {
         components: {
-            NewIngredient,
+            NewIngredientForm,
         },
         data () {
             return {
