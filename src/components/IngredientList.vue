@@ -2,16 +2,16 @@
     <div>
         <h3>Ingredients</h3>
         <ul>
-            <li>Red Mushrooms</li>
-            <li>Soup</li>
-            <li>Bird from window</li>
-            <div v-if="!creatingingIngredient">
+            <li v-for="ingredient in ingredients" :key="ingredient">
+                <button @click="$emit('ingredient-added')">{{ ingredient }}</button>
+            </li>
+            <div v-if="!creatingIngredient">
                 <button @click="toggleNewIngredientForm">
                     + Define new ingredient
                 </button>
             </div>
             <div v-else>
-                <NewIngredientForm @ingredient-added="createIngredient"/>
+                <NewIngredientForm @ingredient-created="createIngredient"/>
             </div>
         </ul>
     </div>
@@ -27,15 +27,16 @@
         },
         data () {
             return {
-                creatingingIngredient: false,
+                creatingIngredient: false,
+                ingredients: ["Red Mushrooms", "Soup", "Bird from window"]
             }
         },
         methods: {
             toggleNewIngredientForm() {
-                this.creatingingIngredient = true;
+                this.creatingIngredient = true;
             },
             createIngredient() {
-                this.creatingingIngredient = false;
+                this.creatingIngredient = false;
             }
         }
     };

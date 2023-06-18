@@ -4,22 +4,22 @@
     <section>
         <div>
             <ul>
-                Ingredients
-                <li>Rat tail</li>
-                <li>Eggs</li>
-                <li>Flour</li>
-                <li>Saliva (cow)</li>
+                <h4>Ingredients:</h4>
+                <li v-for="ingredient in ingredients" :key="ingredient">
+                    {{ ingredient }}
+                </li>
                 <li v-if="!addingIngredient">
                     <button @click="toggleAddIngredient">+ Add ingredient</button>
                 </li>
-                <IngredientList v-else />
+                <IngredientList @ingredient-added="toggleAddIngredient" v-else />
             </ul>
         </div>
         <div>
             <ol>
-                Directions: 
-                <li>Break the eggs</li>
-                <li>Enjoy!</li>
+                <h4>Directions: </h4>
+                <li v-for="direction in directions" :key="direction">
+                    {{ direction }}    
+                </li>
                 <li v-if="!addingStep">
                     <button @click="toggleAddStep">+ Add step</button>
                 </li>
@@ -44,12 +44,14 @@
         data () {
             return {
                 addingIngredient: false,
-                addingStep: false
+                addingStep: false,
+                ingredients: ["Rat tail", "Eggs", "Flour", "Saliva (cow)"],
+                directions: ["Break the eggs", "Enjoy!"]
             }
         },
         methods: {
             toggleAddIngredient() {
-                this.addingIngredient = true
+                this.addingIngredient = !this.addingIngredient
             },
             toggleAddStep() {
                 this.addingStep = true

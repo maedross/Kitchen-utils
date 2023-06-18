@@ -20,7 +20,7 @@
         methods: {
             onSubmit() {
                 // Will we emit an event, pass something to the backend, or both?
-                this.$emit("ingredient-added");
+                this.$emit("ingredient-created");
             }
         }
     };
