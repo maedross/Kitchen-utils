@@ -16,6 +16,7 @@
 import MealPlanScreen from './components/MealPlanScreen.vue';
 import RecipeControlScreen from './components/RecipeControlScreen.vue';
 
+
 export default {
   components: {
     MealPlanScreen,

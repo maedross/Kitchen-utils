@@ -11,7 +11,6 @@ const RECIPE_FOLDER_PATH: String = " ".to_string();
 const RECIPE_LIST_PATH: String = " ".to_string();
 const MEALPLAN_LIST_PATH: String = " ".to_string();
 const INGREDIENT_LIST_PATH: String = " ".to_string();
-const UI_SOURCE_PATH: String = " ".to_string();
 
 #[derive(Serialize, Deserialize)]
 struct Recipe {
@@ -66,7 +65,7 @@ fn new_recipe(title: String){
         directions_list: Vec::new()
     };
     save_recipe(new_rec);
-    let recipe_list = all_recipes();
+    let mut recipe_list = all_recipes();
     recipe_list.push((new_rec.title, new_rec.in_mp));
     let output_data = serde_json::to_string(&recipe_list).expect("Serialization Failed");
     fs::write(RECIPE_LIST_PATH, output_data);
@@ -81,7 +80,7 @@ fn save_recipe(recipe: Recipe){
 
 #[tauri::command]
 fn save_ingredient(ingredient: Ingredient){
-    let ingredient_list: Vec<Ingredient> = load_ingredients();
+    let mut ingredient_list: Vec<Ingredient> = load_ingredients();
     ingredient_list.push(ingredient);
     let output_data = serde_json::to_string(&ingredient_list).expect("Serialization Failed");
     fs::write(INGREDIENT_LIST_PATH, output_data);
@@ -165,11 +164,16 @@ fn shopping_list(serving_amounts: Vec<f64>) -> Vec<(f64, Ingredient)>{
     shopping_list
 }
 
+#[tauri::command]
+fn my_custom_command() -> String {
+  "Hello from Rust!".into()
+}
+
 fn main() {
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![all_recipes, load_recipe, meal_plan, 
         load_ingredients, new_recipe, save_recipe, save_ingredient, delete_ingredient, 
-        shopping_list, add_to_mp, rem_from_mp])
-    .run(tauri::generate_context!("{}", UI_SOURCE_PATH))
+        shopping_list, add_to_mp, rem_from_mp, my_custom_command])
+    .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
